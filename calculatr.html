@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Standard Calculator</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #1c1c1c; /* Dark background */
+        }
+        .calculator {
+            background-color: #2e2e2e; /* Dark grey */
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 400px;
+            margin: 50px auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        .display {
+            background-color: #ffffff; /* White display */
+            border: none;
+            border-radius: 5px;
+            padding: 20px;
+            font-size: 2em;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .btn {
+            background-color: #444444; /* Grey */
+            color: white;
+            font-size: 1.5em;
+        }
+        .btn:hover {
+            background-color: #666666; /* Lighter grey on hover */
+        }
+        .btn:active {
+            background-color: #888888; /* Even lighter grey on active */
+        }
+        .btn-danger {
+            background-color: #ff4500; /* Red for clear */
+        }
+        .btn-danger:hover {
+            background-color: #e63946; /* Darker red on hover */
+        }
+        .btn-equal {
+            background-color: #008000; /* Green for equals */
+        }
+        .btn-equal:hover {
+            background-color: #005700; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <input type="text" id="display" class="form-control display" disabled>
+    <div class="row">
+        <div class="col-3"><button class="btn btn-danger btn-block" onclick="clearDisplay()">C</button></div>
+        <div class="col-3"><button class="btn btn-block" onclick="appendToDisplay('/')">/</button></div>
+        <div class="col-3"><button class="btn btn-block" onclick="appendToDisplay('*')">*</button></div>
+        <div class="col-3"><button class="btn btn-block" onclick="appendToDisplay('-')">-</button></div>
+    </div>
+    <div class="row">
+        <div class="col-3"><button class="btn btn-block" onclick="appendToDisplay('7')">7</button></div>
+        <div class="col-3"><button class="btn btn-block" onclick="appendToDisplay('8')">8</button></div>
+        <div class="col-3"><button class="btn btn-block" onclick="appendToDisplay('9')">9</button></div>
+        <div class="col-3"><button class="btn btn-block" onclick="appendToDisplay('+')">+</button></div>
+    </div>
+    <div class="row">
+        <div class="col-3"><button class="btn btn-block" onclick="appendToDisplay('4')">4</button></div>
+        <div class="col-3"><button class="btn btn-block" onclick="appendToDisplay('5')">5</button></div>
+        <div class="col-3"><button class="btn btn-block" onclick="appendToDisplay('6')">6</button></div>
+        <div class="col-3"><button class="btn btn-block" onclick="appendToDisplay('=')" class="btn-equal">=</button></div>
+    </div>
+    <div class="row">
+        <div class="col-3"><button class="btn btn-block" onclick="appendToDisplay('1')">1</button></div>
+        <div class="col-3"><button class="btn btn-block" onclick="appendToDisplay('2')">2</button></div>
+        <div class="col-3"><button class="btn btn-block" onclick="appendToDisplay('3')">3</button></div>
+        <div class="col-3"><button class="btn btn-block" onclick="appendToDisplay('0')">0</button></div>
+    </div>
+</div>
+
+<script>
+    function appendToDisplay(value) {
+        const display = document.getElementById('display');
+        if (value === '=') {
+            try {
+                display.value = eval(display.value);
+            } catch (error) {
+                display.value = 'Error'; // Handle invalid expressions
+            }
+        } else {
+            display.value += value;
+        }
+    }
+
+    function clearDisplay() {
+        document.getElementById('display').value = '';
+    }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
